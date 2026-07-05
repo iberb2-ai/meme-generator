@@ -1,16 +1,27 @@
 # 😂 Meme Generator
 
-A fun, easy-to-use meme generator built with Next.js, React, and Tailwind CSS.
+A fun, easy-to-use meme generator built with Next.js, React, and Tailwind CSS. Create both **image and video memes** with custom text overlays!
 
 ## Features
 
-✨ **Key Features:**
+✨ **Image Memes:**
 - 📸 Pre-made meme templates
 - 🖼️ Upload your own images
 - ✏️ Add custom top and bottom text
-- 📥 Download your memes as PNG files
+- 📥 Download as PNG
+
+🎬 **Video Memes:**
+- 🎥 Upload MP4/WebM videos
+- ✏️ Add text overlays to videos
+- 👀 Real-time preview
+- 📥 Download as MP4
+- ⚡ Browser-based processing (no server needed)
+
+🌟 **General Features:**
 - 📱 Fully responsive design
 - ⚡ Fast and lightweight
+- 🎨 Beautiful gradient UI
+- 🔧 No backend required
 
 ## Getting Started
 
@@ -56,10 +67,22 @@ The easiest way to deploy is using [Vercel](https://vercel.com):
 
 ## Usage
 
-1. **Choose a template** or upload your own image
-2. **Add text** in the top and bottom text fields
-3. **Preview** your meme in real-time
-4. **Download** your finished meme
+### Creating Image Memes
+
+1. Go to **Image Meme** tab
+2. Choose a template or upload your own image
+3. Add text in the top and bottom fields
+4. Preview your meme in real-time
+5. Click **Download Image Meme**
+
+### Creating Video Memes
+
+1. Go to **Video Meme** tab
+2. Upload your video (MP4, WebM, or MOV)
+3. Add text overlays
+4. Click **Process Video** to render with FFmpeg
+5. Watch the progress bar
+6. Click **Download Video Meme** when done
 
 ## Project Structure
 
@@ -67,15 +90,18 @@ The easiest way to deploy is using [Vercel](https://vercel.com):
 meme-generator/
 ├── app/
 │   ├── components/
-│   │   ├── MemeCanvas.js      # Canvas drawing component
-│   │   └── Controls.js         # Control panel component
-│   ├── globals.css             # Global styles
-│   ├── layout.js               # Root layout
-│   └── page.js                 # Main page
-├── public/                     # Static files
-├── package.json                # Dependencies
-├── tailwind.config.js          # Tailwind configuration
-└── README.md                   # This file
+│   │   ├── MemeCanvas.js          # Canvas drawing for images
+│   │   ├── VideoMemeCanvas.js     # Video preview with overlay
+│   │   ├── VideoProcessor.js      # FFmpeg video processing
+│   │   ├── Controls.js            # Control panel
+│   │   └── MediaTabs.js           # Tab switcher
+│   ├── globals.css                # Global styles
+│   ├── layout.js                  # Root layout
+│   └── page.js                    # Main page
+├── public/                        # Static files
+├── package.json                   # Dependencies
+├── tailwind.config.js             # Tailwind configuration
+└── README.md                      # This file
 ```
 
 ## Technologies Used
@@ -84,6 +110,18 @@ meme-generator/
 - **React 18** - UI library
 - **Tailwind CSS** - Styling
 - **Canvas API** - Image manipulation
+- **FFmpeg.wasm** - Browser-based video processing
+
+## Video Processing Details
+
+The video meme generator uses **FFmpeg.wasm**, which runs entirely in the browser:
+
+- ✅ No server uploads needed
+- ✅ Your videos stay on your device
+- ✅ Processing happens locally
+- ✅ Free and open-source
+
+**Note:** First load may take time as FFmpeg is downloaded (~30MB)
 
 ## Future Enhancements
 
@@ -94,6 +132,23 @@ meme-generator/
 - [ ] Meme sharing to social media
 - [ ] Save meme history
 - [ ] Dark mode
+- [ ] Video filters
+- [ ] Audio extraction
+
+## Troubleshooting
+
+**Video processing is slow:**
+- FFmpeg.wasm processes on your CPU - larger videos take longer
+- Try shorter videos or lower resolution
+
+**"Module not found" error:**
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**CORS issues:**
+- Make sure videos are uploaded locally, not from external URLs
 
 ## Contributing
 
